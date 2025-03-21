@@ -1,0 +1,240 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom properties */
+:root {
+  /* Colors */
+  --clr-very-dark-grayish-blue: hsl(217, 19%, 35%);
+  --clr-desaturated-dark-blue: hsl(214, 17%, 51%);
+  --clr-grayish-blue: hsl(212, 23%, 69%);
+  --clr-light-grayish-blue: hsl(210, 46%, 95%);
+  --clr-white: #fff;
+
+  /* Typography */
+  --ff-primary: "Manrope", sans-serif;
+  --fs-body: 13px;
+  --fw-regular: 500;
+  --fw-bold: 700;
+
+  /* Spacing */
+  --spacing-xs: 1em;
+  --spacing-sm: 1.5em;
+  --spacing-md: 3em;
+
+  /* Border radius */
+  --border-radius: 10px;
+  --border-radius-full: 50%;
+
+  /* Box shadow */
+  --shadow-default: 0 40px 40px -10px rgba(201, 213, 225, 0.5);
+}
+
+body {
+  background-color: var(--clr-light-grayish-blue);
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.avatar-img {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Article preview component */
+.container {
+  background-color: var(--clr-white);
+  max-width: 56.153em;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-default);
+  margin: 0 1rem;
+}
+
+.article-preview {
+  padding: 3em;
+  display: grid;
+  gap: 1.84em;
+}
+
+.article-preview h1 {
+  font-size: 1.538em;
+  color: var(--clr-very-dark-grayish-blue);
+  font-weight: var(--fw-bold);
+  line-height: 130%;
+}
+
+.main-text {
+  color: var(--clr-desaturated-dark-blue);
+  font-size: 1em;
+  font-weight: var(--fw-regular);
+  line-height: 140%;
+  letter-spacing: 0.12%;
+}
+
+.avatar-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.avatar-name {
+  font-size: 1em;
+  color: var(--clr-very-dark-grayish-blue);
+  font-weight: var(--fw-bold);
+}
+
+.date {
+  font-size: 1em;
+  color: var(--clr-grayish-blue);
+  font-weight: var(--fw-regular);
+}
+
+.share {
+  position: relative;
+}
+
+.share-btn {
+  width: 2.46em;
+  height: 2.46em;
+  border-radius: var(--border-radius-full);
+  background-color: var(--clr-light-grayish-blue);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.share-btn.active,
+.share-btn:hover {
+  background-color: var(--clr-very-dark-grayish-blue);
+}
+
+.share-btn.active img,
+.share-btn:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.share-box {
+  background-color: var(--clr-very-dark-grayish-blue);
+  position: absolute;
+  min-width: 19em;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  top: -6.5em;
+  right: -8.3em;
+  box-shadow: var(--shadow-default);
+  display: none;
+}
+
+.share-box p {
+  display: flex;
+  align-items: center;
+}
+
+.share-box p span {
+  letter-spacing: 0.5em;
+  color: var(--clr-grayish-blue);
+  text-transform: uppercase;
+  margin-right: var(--spacing-xs);
+}
+
+.share-box ul {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.share-box ul li a {
+  display: flex;
+  align-items: center;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.share-box::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: "";
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: -2em;
+  border: 15px solid transparent;
+  border-top-color: var(--clr-very-dark-grayish-blue);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 100%;
+  }
+
+  .share-box {
+    min-width: 100%;
+  }
+
+  .image img {
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0;
+  }
+}
