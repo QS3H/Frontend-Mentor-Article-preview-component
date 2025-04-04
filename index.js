@@ -3,20 +3,29 @@
 const shareButton = document.getElementById("share-btn");
 const shareBox = document.getElementById("share-box");
 
-shareButton.addEventListener("click", function () {
-  // Toggle the share box visibility
-  if (shareBox.style.display === "flex") {
-    shareBox.style.display = "none";
+// error handling for DOM elements
+if (!shareButton || !shareBox) {
+  console.error("Required elements not found");
+  throw new Error("Required elements not found");
+}
+
+shareButton.addEventListener("click", () => {
+  shareButton.classList.toggle("active");
+  shareBox.classList.toggle("active");
+});
+
+// Closes share box when clicking outside
+document.addEventListener("click", (event) => {
+  if (!shareButton.contains(event.target) && !shareBox.contains(event.target)) {
     shareButton.classList.remove("active");
-  } else {
-    shareBox.style.display = "flex";
-    shareButton.classList.add("active");
+    shareBox.classList.remove("active");
   }
 });
 
-document.addEventListener("click", function (event) {
-  if (!shareButton.contains(event.target) && !shareBox.contains(event.target)) {
-    shareBox.style.display = "none";
-    shareButton.classList.remove("active");
+// keyboard accessibility
+shareButton.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    shareButton.click();
   }
 });
