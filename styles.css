@@ -193,9 +193,16 @@ body {
   transform: translate(var(--translateX), var(--translateY)) scale(var(--scale));
   transform-origin: bottom;
   visibility: hidden;
+  opacity: 0;
   transition: all 0.25s ease;
   bottom: calc(100% + 2.153em);
   left: 50%;
+}
+
+.hidden {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  --scale: 0 !important;
 }
 
 .share-box::after {
@@ -214,6 +221,7 @@ body {
 .share-box.active {
   --scale: 1;
   visibility: visible;
+  opacity: 1;
 }
 
 .share-box p {
@@ -279,6 +287,16 @@ body {
     border-radius: 0;
     padding: 1.307em 2.307em;
     z-index: -1;
+  }
+
+  .share-btn.active,
+  .share-btn:hover {
+    background-color: var(--clr-desaturated-dark-blue);
+  }
+
+  .share-btn.active img,
+  .share-btn:hover img {
+    filter: brightness(0) invert(1);
   }
 
   .share-box.active {

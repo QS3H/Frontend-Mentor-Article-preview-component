@@ -9,6 +9,8 @@ if (!shareButton || !shareBox) {
   throw new Error("Required elements not found");
 }
 
+shareBox.classList.add("hidden");
+
 shareButton.addEventListener("click", () => {
   shareButton.classList.toggle("active");
   shareBox.classList.toggle("active");
@@ -19,6 +21,7 @@ document.addEventListener("click", (event) => {
   if (!shareButton.contains(event.target) && !shareBox.contains(event.target)) {
     shareButton.classList.remove("active");
     shareBox.classList.remove("active");
+    shareBox.classList.toggle("hidden");
   }
 });
 
